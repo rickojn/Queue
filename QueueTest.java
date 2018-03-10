@@ -1,18 +1,41 @@
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class QueueTest {
+    Queue queue;
 
-    @org.junit.jupiter.api.BeforeEach
+    @BeforeEach
     void setUp() {
+        queue = new Queue();
     }
 
-    @org.junit.jupiter.api.AfterEach
+    @AfterEach
     void tearDown() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
+    @DisplayName("When queue is created it is empty")
     void isEmpty() {
-        Queue queue = new Queue();
         assertEquals(queue.isEmpty(),true);
     }
+
+    @Test
+    @DisplayName("When queue is created it has no members")
+    void testQueueHasNoMembersWhenCreated() {
+        assertEquals(queue.count(),0);
+    }
+
+    @Test
+    @DisplayName("When 3 members are enqueued the count is 3")
+    void testCountWhenMembersEnqueued() {
+        queue.enqueue(100);
+        queue.enqueue(200);
+        queue.enqueue(300);
+        assertEquals(queue.count(),3);
+    }
+
 }
