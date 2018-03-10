@@ -37,5 +37,18 @@ class QueueTest {
         queue.enqueue(300);
         assertEquals(queue.count(),3);
     }
+    @Test
+    @DisplayName("Members dequeued in the order they were enqueued")
+    void testFIFOdequeue() {
+        queue.enqueue(100);
+        queue.enqueue(200);
+        queue.enqueue(300);
+        assertEquals(queue.dequeue(),100);
+        assertEquals(queue.dequeue(),200);
+        queue.enqueue(500);
+        assertEquals(queue.dequeue(),300);
+        assertEquals(queue.dequeue(),500);
+        assertEquals(queue.count(),0);
+    }
 
 }
