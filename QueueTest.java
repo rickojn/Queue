@@ -70,4 +70,22 @@ class QueueTest {
         assertEquals(queue.count(),97);
     }
 
+    @Test
+    @DisplayName("queueing and dequeueing")
+    void testQueueingAndDequeueing() {
+        queue.enqueue(100);
+        queue.enqueue(200);
+        queue.enqueue(300);
+        queue.enqueue(400);
+        queue.enqueue(500);
+        assertEquals(queue.dequeue(),100);
+        assertEquals(queue.dequeue(), 200);
+        queue.enqueue(600);
+        queue.enqueue((700));
+        queue.enqueue(800);
+        assertEquals(300,queue.dequeue());
+        assertEquals(5,queue.count());
+
+    }
+
 }
