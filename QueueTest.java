@@ -43,6 +43,7 @@ class QueueTest {
         queue.enqueue(200);
         queue.enqueue(300);
         assertEquals(queue.count(),3);
+        assertEquals(false, queue.isEmpty());
     }
     @Test
     @DisplayName("Members dequeued in the order they were enqueued")
