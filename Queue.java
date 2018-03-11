@@ -6,6 +6,19 @@ public class Queue {
     private int _head;
     private int _tail;
 
+    private void resizeMembersArray(){
+        _capacity = _capacity + 5;
+        int [] largerArray = new int[_capacity];
+        int oldCount = _count;
+        for (int i = 0; i < oldCount; i++){
+            largerArray[i] = dequeue();
+        }
+        _members = largerArray;
+        _head = 0;
+        _count = oldCount;
+        _tail = oldCount;
+    }
+
     boolean isEmpty(){
         return true;
     }
@@ -16,12 +29,7 @@ public class Queue {
 
     public void enqueue(int item) {
         if (_tail == _capacity){
-            _capacity = _capacity + 5;
-            int [] largerArray = new int[_capacity];
-            for (int i = 0; i < _tail; i++){
-                largerArray[i] = _members[i];
-            }
-            _members = largerArray;
+         resizeMembersArray();
         }
         _members[_tail] = item;
         _count++;
